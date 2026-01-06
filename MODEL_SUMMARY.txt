@@ -1,0 +1,138 @@
+# Tóm Tắt Mô Hình Chatbot
+
+## 📋 Tổng Quan
+
+Chatbot hỏi-đáp sử dụng **Information Retrieval (IR)** với kỹ thuật:
+- **TF-IDF Vectorization** để biểu diễn văn bản dưới dạng vector số
+- **Cosine Similarity** để tìm câu hỏi tương tự nhất trong database
+
+## 🔄 Quy Trình Hoạt Động
+
+### 1. **Giai Đoạn Tiền Xử Lý (Preprocessing)**
+
+**Hàm `preprocess_vietnamese()`:**
+- ✅ **Lowercase**: Chuyển tất cả ký tự thành chữ thường
+- ✅ **Bỏ dấu**: Loại bỏ dấu tiếng Việt (á → a, ế → e, ...)
+- ✅ **Chuẩn hóa khoảng trắng**: Loại bỏ khoảng trắng thừa
+
+**Ví dụ:**
+```
+Input:  "AI là gì?"
+Output: "ai la gi"
+```
+
+### 2. **Giai Đoạn Huấn Luyện (Training)**
+
+**Bước 1: Load dữ liệu**
+- Đọc file CSV chứa các cặp (câu hỏi, câu trả lời)
+- Lưu trữ: `questions[]`, `answers[]`, `processed_questions[]`
+
+**Bước 2: Vector hóa bằng TF-IDF**
+```python
+TfidfVectorizer(
+    ngram_range=(1, 2),    # Xét từ đơn và cụm 2 từ
+    max_features=5000,      # Tối đa 5000 features
+    min_df=1,               # Từ phải xuất hiện ít nhất 1 lần
+    max_df=0.95             # Bỏ qua từ xuất hiện >95% documents
+)
+```
+
+**Kết quả:**
+- Mỗi câu hỏi được chuyển thành vector số (sparse matrix)
+- Vocabulary size: ~1171 từ (với 199 câu hỏi)
+
+### 3. **Giai Đoạn Dự Đoán (Inference)**
+
+Khi người dùng hỏi câu hỏi mới:
+
+1. **Tiền xử lý** câu hỏi của người dùng
+2. **Vector hóa** câu hỏi bằng TF-IDF (dùng cùng vectorizer đã train)
+3. **Tính Cosine Similarity** với tất cả câu hỏi trong database:
+   ```
+   similarity = cosine_similarity(user_vector, question_vectors)
+   ```
+4. **Tìm câu hỏi có similarity cao nhất**
+5. **Kiểm tra ngưỡng**: Nếu similarity >= threshold (0.1) → trả về câu trả lời tương ứng
+
+## 📊 Công Thức Toán Học
+
+### TF-IDF (Term Frequency-Inverse Document Frequency)
+
+**TF (Term Frequency):**
+```
+TF(t, d) = (Số lần từ t xuất hiện trong document d) / (Tổng số từ trong d)
+```
+
+**IDF (Inverse Document Frequency):**
+```
+IDF(t, D) = log(N / (Số documents chứa từ t))
+```
+
+**TF-IDF Score:**
+```
+TF-IDF(t, d, D) = TF(t, d) × IDF(t, D)
+```
+
+### Cosine Similarity
+
+Đo độ tương đồng giữa 2 vector:
+
+```
+cosine_similarity(A, B) = (A · B) / (||A|| × ||B||)
+```
+
+- Giá trị từ 0 đến 1
+- 1 = hoàn toàn giống nhau
+- 0 = không liên quan
+
+## 🎯 Tham Số Cấu Hình
+
+| Tham số | Giá trị | Mô tả |
+|---------|---------|-------|
+| `similarity_threshold` | 0.1 | Ngưỡng similarity tối thiểu để trả lời |
+| `ngram_range` | (1, 2) | Xét từ đơn và cụm 2 từ |
+| `max_features` | 5000 | Số lượng features tối đa |
+| `min_df` | 1 | Từ phải xuất hiện ít nhất 1 lần |
+| `max_df` | 0.95 | Bỏ qua từ xuất hiện >95% documents |
+
+## 📈 Đặc Điểm Mô Hình
+
+### ✅ Ưu Điểm:
+- **Đơn giản, dễ hiểu**: Không cần deep learning
+- **Nhanh**: Vector hóa và tính similarity rất nhanh
+- **Không cần training phức tạp**: Chỉ cần vector hóa dữ liệu
+- **Phù hợp với dữ liệu nhỏ**: Hiệu quả với vài trăm câu hỏi
+
+### ⚠️ Hạn Chế:
+- **Không hiểu ngữ cảnh**: Chỉ dựa vào từ khóa
+- **Không học được**: Không cải thiện theo thời gian
+- **Phụ thuộc vào dữ liệu**: Chất lượng phụ thuộc vào database
+- **Không xử lý được câu hỏi phức tạp**: Chỉ tìm câu hỏi tương tự
+
+## 🔍 Ví Dụ Hoạt Động
+
+**Input:** "AI là gì?"
+
+1. Tiền xử lý: `"ai la gi"`
+2. Vector hóa: `[0.2, 0.0, 0.5, 0.1, ...]` (vector 1171 chiều)
+3. Tính similarity với 199 câu hỏi:
+   - Câu hỏi "AI là gì?": similarity = 0.95 ✓
+   - Câu hỏi "Chatbot là gì?": similarity = 0.15
+   - ...
+4. Chọn câu hỏi có similarity cao nhất (0.95)
+5. Trả về câu trả lời tương ứng
+
+## 📦 Dữ Liệu
+
+- **Số lượng câu hỏi**: 199 cặp
+- **Vocabulary size**: 1171 từ
+- **Định dạng**: CSV với 2 cột: "question", "answer"
+
+## 🚀 Ứng Dụng
+
+Mô hình này phù hợp cho:
+- FAQ chatbot
+- Hệ thống hỏi-đáp đơn giản
+- Tìm kiếm tài liệu
+- Hỗ trợ khách hàng cơ bản
+
