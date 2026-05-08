@@ -16,6 +16,85 @@ st.set_page_config(
     layout="centered"
 )
 
+# Tùy biến giao diện Streamlit
+st.markdown(
+    """
+    <style>
+    :root {
+        --primary-color: #4f46e5;
+        --primary-soft: #eef2ff;
+        --border-color: #e5e7eb;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+    }
+
+    .stApp {
+        background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+        color: var(--text-main);
+    }
+
+    [data-testid="stSidebar"] {
+        background: #ffffff;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .block-container {
+        padding-top: 1.2rem;
+    }
+
+    /* Card trong sidebar */
+    [data-testid="stSidebar"] .stAlert {
+        border-radius: 14px;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Bong chat */
+    [data-testid="stChatMessage"] {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 0.6rem 0.8rem;
+        margin-bottom: 0.6rem;
+        box-shadow: 0 6px 16px rgba(79, 70, 229, 0.06);
+    }
+
+    /* Chat input */
+    [data-testid="stChatInputTextArea"] {
+        border-radius: 14px !important;
+        border: 1px solid #c7d2fe !important;
+        background: #ffffff !important;
+    }
+
+    /* Nút chung */
+    .stButton > button, .stDownloadButton > button {
+        border-radius: 12px !important;
+        border: 1px solid transparent !important;
+        background: var(--primary-color) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+    }
+
+    .stButton > button:hover, .stDownloadButton > button:hover {
+        filter: brightness(0.95);
+    }
+
+    /* Radio option */
+    [data-testid="stRadio"] > div {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 0.4rem;
+    }
+
+    /* Caption dịu màu hơn */
+    .stCaption {
+        color: var(--text-muted) !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Khởi tạo chatbot TF-IDF trong session state
 @st.cache_resource
 def load_chatbot_tfidf():
