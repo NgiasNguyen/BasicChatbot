@@ -20,6 +20,7 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
     :root {
         --primary-color: #d946ef;
         --primary-soft: #fdf4ff;
@@ -31,6 +32,13 @@ st.markdown(
     .stApp {
         background: linear-gradient(180deg, #fff7fb 0%, #f5f3ff 55%, #fdf2f8 100%);
         color: var(--text-main);
+        font-family: 'Nunito', 'Segoe UI', sans-serif;
+    }
+
+    .stApp, .stApp p, .stApp span, .stApp label, .stApp li,
+    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
+    .stMarkdown, .stText {
+        color: var(--text-main) !important;
     }
 
     [data-testid="stSidebar"] {
@@ -63,6 +71,18 @@ st.markdown(
         border-radius: 14px !important;
         border: 1px solid #f0abfc !important;
         background: #ffffff !important;
+        color: var(--text-main) !important;
+    }
+
+    [data-testid="stChatInputTextArea"] textarea,
+    [data-testid="stTextInputRootElement"] input {
+        color: var(--text-main) !important;
+        caret-color: var(--primary-color) !important;
+    }
+
+    [data-testid="stChatInputTextArea"] textarea::placeholder,
+    [data-testid="stTextInputRootElement"] input::placeholder {
+        color: var(--text-muted) !important;
     }
 
     /* Nút chung */
@@ -89,6 +109,11 @@ st.markdown(
     /* Caption dịu màu hơn */
     .stCaption {
         color: var(--text-muted) !important;
+    }
+
+    .stSelectbox label, .stRadio label, .stTextInput label, .stCheckbox label {
+        color: #6b217d !important;
+        font-weight: 700 !important;
     }
     </style>
     """,
