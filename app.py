@@ -41,6 +41,17 @@ st.markdown(
         color: var(--text-main) !important;
     }
 
+    /* Thanh trên cùng của Streamlit */
+    [data-testid="stHeader"] {
+        background: #fff9fd !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Khu vực toolbar góc trên phải */
+    [data-testid="stToolbar"] {
+        background: transparent !important;
+    }
+
     [data-testid="stSidebar"] {
         background: #fff9fd;
         border-right: 1px solid var(--border-color);
@@ -115,6 +126,12 @@ st.markdown(
         color: #6b217d !important;
         font-weight: 700 !important;
     }
+
+    /* Thanh dưới cùng / footer */
+    footer, .stApp footer, [data-testid="stDecoration"] {
+        background: #fff9fd !important;
+        color: var(--text-muted) !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -180,7 +197,7 @@ else:
     st.sidebar.markdown(f"**Mô hình:** paraphrase-multilingual-MiniLM-L12-v2")
 
 # Tiêu đề
-st.title("💬 Chatbot Hỏi-Đáp")
+st.title("💬 Cùng trò chuyện với mình nhé")
 
 # Hiển thị loại chatbot đang dùng
 if chatbot_type == "TF-IDF (Nhanh)":
