@@ -104,6 +104,25 @@ st.markdown(
         border-top: 1px solid var(--border-color) !important;
     }
 
+    /* Chặn các mảng đen 2 bên vùng chat input */
+    [data-testid="stBottomBlockContainer"] > div,
+    [data-testid="stBottomBlockContainer"] div,
+    [data-testid="stChatFloatingInputContainer"] > div,
+    [data-testid="stChatFloatingInputContainer"] div,
+    [data-testid="stChatInput"],
+    [data-testid="stChatInput"] > div,
+    [data-testid="stChatInput"] div {
+        background: #fff9fd !important;
+    }
+
+    [data-testid="stChatInput"]::before,
+    [data-testid="stChatInput"]::after,
+    [data-testid="stChatFloatingInputContainer"]::before,
+    [data-testid="stChatFloatingInputContainer"]::after {
+        background: #fff9fd !important;
+        box-shadow: none !important;
+    }
+
     /* Nút chung */
     .stButton > button, .stDownloadButton > button {
         border-radius: 12px !important;
