@@ -21,20 +21,20 @@ st.markdown(
     """
     <style>
     :root {
-        --primary-color: #4f46e5;
-        --primary-soft: #eef2ff;
-        --border-color: #e5e7eb;
-        --text-main: #111827;
-        --text-muted: #6b7280;
+        --primary-color: #d946ef;
+        --primary-soft: #fdf4ff;
+        --border-color: #f5d0fe;
+        --text-main: #4a044e;
+        --text-muted: #a21caf;
     }
 
     .stApp {
-        background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+        background: linear-gradient(180deg, #fff7fb 0%, #f5f3ff 55%, #fdf2f8 100%);
         color: var(--text-main);
     }
 
     [data-testid="stSidebar"] {
-        background: #ffffff;
+        background: #fff9fd;
         border-right: 1px solid var(--border-color);
     }
 
@@ -50,18 +50,18 @@ st.markdown(
 
     /* Bong chat */
     [data-testid="stChatMessage"] {
-        background: #ffffff;
+        background: #fff7fb;
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 0.6rem 0.8rem;
         margin-bottom: 0.6rem;
-        box-shadow: 0 6px 16px rgba(79, 70, 229, 0.06);
+        box-shadow: 0 6px 16px rgba(217, 70, 239, 0.12);
     }
 
     /* Chat input */
     [data-testid="stChatInputTextArea"] {
         border-radius: 14px !important;
-        border: 1px solid #c7d2fe !important;
+        border: 1px solid #f0abfc !important;
         background: #ffffff !important;
     }
 
@@ -80,7 +80,7 @@ st.markdown(
 
     /* Radio option */
     [data-testid="stRadio"] > div {
-        background: #ffffff;
+        background: #fff7fb;
         border: 1px solid var(--border-color);
         border-radius: 12px;
         padding: 0.4rem;
