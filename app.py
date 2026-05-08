@@ -34,6 +34,15 @@ st.markdown(
         background: var(--page-bg) !important;
     }
 
+    [data-testid="stAppViewContainer"],
+    [data-testid="stMain"],
+    [data-testid="stMainBlockContainer"],
+    section.main,
+    .main,
+    .stAppViewContainer {
+        background: var(--page-bg) !important;
+    }
+
     .stApp {
         background: linear-gradient(180deg, #fff7fb 0%, #f5f3ff 55%, #fdf2f8 100%);
         color: var(--text-main);
@@ -146,9 +155,10 @@ st.markdown(
         background: var(--page-bg) !important;
     }
 
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottom"] div,
     [data-testid="stBottomBlockContainer"] {
-        left: 0 !important;
-        right: 0 !important;
+        background: var(--page-bg) !important;
     }
 
     /* Nút chung */
