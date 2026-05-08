@@ -27,6 +27,11 @@ st.markdown(
         --border-color: #f5d0fe;
         --text-main: #4a044e;
         --text-muted: #a21caf;
+        --page-bg: #fff9fd;
+    }
+
+    html, body {
+        background: var(--page-bg) !important;
     }
 
     .stApp {
@@ -50,6 +55,18 @@ st.markdown(
     /* Khu vực toolbar góc trên phải */
     [data-testid="stToolbar"] {
         background: transparent !important;
+    }
+
+    [data-testid="stToolbar"] button {
+        background: #ffe4f6 !important;
+        border: 1px solid #f5b6e6 !important;
+        border-radius: 10px !important;
+        color: #8a136d !important;
+    }
+
+    [data-testid="stToolbar"] button svg {
+        fill: #8a136d !important;
+        color: #8a136d !important;
     }
 
     [data-testid="stSidebar"] {
@@ -121,6 +138,17 @@ st.markdown(
     [data-testid="stChatFloatingInputContainer"]::after {
         background: #fff9fd !important;
         box-shadow: none !important;
+    }
+
+    /* Ép nền toàn vùng cố định dưới cùng để không lộ mảng đen hai bên */
+    [data-testid="stBottom"],
+    [data-testid="stBottomBlockContainer"] {
+        background: var(--page-bg) !important;
+    }
+
+    [data-testid="stBottomBlockContainer"] {
+        left: 0 !important;
+        right: 0 !important;
     }
 
     /* Nút chung */
