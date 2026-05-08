@@ -96,6 +96,14 @@ st.markdown(
         color: var(--text-muted) !important;
     }
 
+    /* Vùng bọc phía dưới quanh ô nhập chat */
+    [data-testid="stBottomBlockContainer"],
+    [data-testid="stChatFloatingInputContainer"],
+    .stChatFloatingInputContainer {
+        background: #fff9fd !important;
+        border-top: 1px solid var(--border-color) !important;
+    }
+
     /* Nút chung */
     .stButton > button, .stDownloadButton > button {
         border-radius: 12px !important;
@@ -197,7 +205,7 @@ else:
     st.sidebar.markdown(f"**Mô hình:** paraphrase-multilingual-MiniLM-L12-v2")
 
 # Tiêu đề
-st.title("💬 Cùng trò chuyện với mình nhé")
+st.title("💬😊 Cùng trò chuyện với mình nhé 🌸")
 
 # Hiển thị loại chatbot đang dùng
 if chatbot_type == "TF-IDF (Nhanh)":
